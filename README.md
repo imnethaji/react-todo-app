@@ -4,4 +4,4 @@ This is a beginner project I have done with React and Sass to explore concepts u
 
 # Output
 
-(./public/To-Do final out.png)
+(./public/final-out.png)
