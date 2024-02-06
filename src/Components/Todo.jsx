@@ -9,12 +9,16 @@ const Todo = () => {
   const [todos, setTodos] = useState([]);
   const inputRef = useRef(null);
   const add = () => {
-    // Adding new items to array by using spread operator and passing object with values from input field
-    setTodos([
-      ...todos,
-      { no: count++, text: inputRef.current.value, display: "" },
-    ]);
-    inputRef.current.value = "";
+    if (inputRef.current.value === "") {
+      alert("Please type something");
+    } else {
+      // Adding new items to array by using spread operator and passing object with values from input field
+      setTodos([
+        ...todos,
+        { no: count++, text: inputRef.current.value, display: "" },
+      ]);
+      inputRef.current.value = "";
+    }
   };
 
   const clearList = () => {
@@ -32,7 +36,7 @@ const Todo = () => {
     <div>
       <div className="todo">
         <div className="todo-header">
-          <h2>To-Do List</h2>
+          <h4>To-Do List</h4>
         </div>
         <div className="todo-add">
           <input
@@ -44,7 +48,7 @@ const Todo = () => {
         </div>
         <div className="todo-btns">
           <div
-            className="todo-add-btn"
+            className="todo-add-btn todo-btn"
             onClick={() => {
               add();
             }}
@@ -52,7 +56,7 @@ const Todo = () => {
             ADD
           </div>
           <div
-            className="todo-clr-btn"
+            className="todo-clr-btn todo-btn"
             onClick={() => {
               clearList();
             }}

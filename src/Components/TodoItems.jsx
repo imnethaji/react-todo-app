@@ -6,7 +6,7 @@ const TodoItems = ({ text, index, removeList }) => {
     <>
       <div className="list-items">
         <p>
-          {index + 1}. {text}
+          <span className="item-index">{index + 1}</span> {text}
         </p>
         <button className="remove" onClick={removeList}>
           Remove
