@@ -4,4 +4,4 @@ This is a beginner project I have done with React and Sass to explore concepts u
 
 # Output
 
-![Design preview for the To-Do list app](./public/final-out.png)
+![Design preview for the To-Do list app](./public/updated-image.png)
