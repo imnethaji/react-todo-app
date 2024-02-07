@@ -32,6 +32,12 @@ const Todo = () => {
     setTodos(newTodos);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      add();
+    }
+  };
+
   return (
     <div>
       <div className="todo">
@@ -43,6 +49,7 @@ const Todo = () => {
             type="text"
             placeholder="Add your task"
             className="todo-input"
+            onKeyDown={handleKeyDown}
             ref={inputRef}
           ></input>
         </div>
@@ -65,12 +72,12 @@ const Todo = () => {
           </div>
         </div>
         <div className="todo-list">
-          {todos.map((todo, index) => (
+          {todos.map((todo, i) => (
             <TodoItems
-              text={todo.text}
-              index={index}
-              key={index}
-              removeList={() => removeListItem(index)}
+              initialText={todo.text}
+              i={i}
+              key={i}
+              removeList={() => removeListItem(i)}
             />
           ))}
         </div>
