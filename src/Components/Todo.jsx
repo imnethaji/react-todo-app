@@ -68,7 +68,7 @@ const Todo = () => {
               clearList();
             }}
           >
-            Clear
+            Clear All
           </div>
         </div>
         <div className="todo-list">
