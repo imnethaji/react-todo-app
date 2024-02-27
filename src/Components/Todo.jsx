@@ -3,20 +3,21 @@ import "./CSS/Todo.sass";
 
 import TodoItems from "./TodoItems";
 
-let count = 0;
-
 const Todo = () => {
   const [todos, setTodos] = useState([]);
+  const [count, setCount] = useState(0);
   const inputRef = useRef(null);
+
   const add = () => {
+    const uniqueID = Math.random();
     if (inputRef.current.value === "") {
       alert("Please type something");
     } else {
-      // Adding new items to array by using spread operator and passing object with values from input field
       setTodos([
         ...todos,
-        { no: count++, text: inputRef.current.value, display: "" },
+        { id: uniqueID, no: count, text: inputRef.current.value, display: "" },
       ]);
+      setCount(count + 1);
       inputRef.current.value = "";
     }
   };
@@ -26,10 +27,11 @@ const Todo = () => {
     setTodos([]);
   };
 
-  const removeListItem = (index) => {
-    // Creating two new slices and then concating to make a new array and assigning to the setTodos() state function
-    let newTodos = todos.slice(0, index).concat(todos.slice(index + 1));
+  const removeListItem = (indexToRemove) => {
+    // Filter out the item at the specific index
+    let newTodos = todos.filter((todo) => todo.id !== indexToRemove);
     setTodos(newTodos);
+    setCount(count - 1);
   };
 
   const handleKeyDown = (e) => {
@@ -68,16 +70,17 @@ const Todo = () => {
               clearList();
             }}
           >
-            Clear
+            Clear All
           </div>
         </div>
         <div className="todo-list">
           {todos.map((todo, i) => (
             <TodoItems
               initialText={todo.text}
+              id={todo.id}
               i={i}
-              key={i}
-              removeList={() => removeListItem(i)}
+              key={todo.no}
+              removeList={() => removeListItem(todo.id)}
             />
           ))}
         </div>
